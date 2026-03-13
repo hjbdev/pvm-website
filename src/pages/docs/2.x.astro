@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Terminal from '../../components/Terminal.astro';
+---
+
+<Layout title="Documentation (2.x) | pvm - PHP Version Manager for Windows">
+  <Header />
+  <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <article class="max-w-none text-zinc-800 dark:text-zinc-200 [&_code:not(pre_code)]:bg-zinc-100 [&_code:not(pre_code)]:dark:bg-zinc-800/60 [&_code:not(pre_code)]:px-1.5 [&_code:not(pre_code)]:py-0.5 [&_code:not(pre_code)]:rounded-md [&_code:not(pre_code)]:text-sm [&_code:not(pre_code)]:font-mono">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <h1 class="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">Documentation</h1>
+        <select onchange="window.location.href=this.value" class="bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg focus:ring-zinc-500 focus:border-zinc-500 block p-2">
+          <option value="/docs/2.x" selected>Version 2.x</option>
+          <option value="/docs/1.x">Version 1.x</option>
+        </select>
+      </div>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100">Installation</h2>
+        <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <code>pvm</code> currently supports x64 Windows only.
+        </p>
+        <Terminal command="irm https://pvm.hjb.dev/install.ps1 | iex" />
+        <p class="mt-6 mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          You can still install manually by downloading the latest <code>pvm.exe</code> release, placing it in <code>%UserProfile%\.pvm\bin</code> (for example <code>C:\Users\Harry\.pvm\bin</code>), and adding that folder to your PATH.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100">Commands</h2>
+
+        <div class="space-y-10">
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">List Versions</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will list out all the available PHP versions you have installed.</p>
+            <Terminal command="pvm list" />
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">List Remote Versions</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will list the PHP versions available for installation.</p>
+            <Terminal command="pvm list remote" />
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">Show Path</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will tell you what to put in your Path variable.</p>
+            <Terminal command="pvm bin" />
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">Use Version</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will switch your currently active PHP version to PHP 8.2.9:</p>
+            <Terminal command="pvm use 8.2.9" />
+            <div class="mt-4 p-4 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 leading-relaxed">
+              <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">Note:</strong> Versions must have major.minor specified in the <em>use</em> command. If a .patch version is omitted, the newest available patch version is chosen.
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">Install Version</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will install PHP 8.2 at the latest patch:</p>
+            <Terminal command="pvm install 8.2" />
+            <div class="mt-4 p-4 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 leading-relaxed">
+              <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">Note:</strong> The install command will automatically determine the newest minor/patch versions if they are not specified.
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">Manage Extensions</h3>
+            <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will show regular and Zend extensions for the active PHP version, including whether each extension is enabled, disabled, available in <code>ext</code>, or missing from disk.</p>
+            <Terminal command="pvm extensions list" />
+            <p class="mt-6 mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will enable one or more extensions that already have entries in the active version's <code>php.ini</code>.</p>
+            <Terminal command="pvm extensions enable curl,openssl" />
+            <p class="mt-6 mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">Will disable an extension or Zend extension in the active version's <code>php.ini</code>.</p>
+            <Terminal command="pvm extensions disable xdebug" />
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100">Composer Support</h2>
+        <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <code>pvm</code> now installs also composer with each php version installed. It will install Composer latest stable release for PHP >= 7.2 and Composer latest 2.2.x LTS for PHP &lt; 7.2. You'll be able to invoke composer from terminal as it is intended:
+        </p>
+        <Terminal command="composer --version" />
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100">Build this project</h2>
+        <p class="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          To compile this project use:
+        </p>
+        <Terminal command="bash ./build.sh" />
+        <p class="mt-6 mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          To override the embedded version for a release-style local build:
+        </p>
+        <Terminal command="VERSION=1.2.1 bash ./build.sh" />
+        <p class="mt-6 mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400">
+          GitHub releases are built automatically from pushed tags and publish both <code>pvm.exe</code> and <code>install.ps1</code> as release assets.
+        </p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>

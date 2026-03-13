@@ -1,17 +1,59 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Terminal from '../components/Terminal.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="pvm - PHP Version Manager for Windows">
+  <Header />
+  <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">
+        PHP Version Manager <br class="hidden sm:block" />
+        <span class="text-zinc-500">for Windows</span>
+      </h1>
+      <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-8">
+        Removing the hassle of changing PHP versions in the CLI on Windows.
+        When developing on Windows and using the integrated terminal, it's quite difficult to get those terminals to <i>actually</i> listen to PATH changes. This utility changes that.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <Button href="/docs">Get Started</Button>
+        <Button href="https://github.com/hjbdev/pvm/releases" variant="outline" target="_blank" rel="noopener noreferrer">Download Latest</Button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <Card title="Easy to use">
+        <div slot="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap size-4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div slot="action">
+           <Button href="/docs" variant="outline" class="!h-7 !px-2 text-xs gap-1">
+             Commands
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-3"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+           </Button>
+        </div>
+        <div class="p-4 rounded-lg border bg-zinc-50 dark:border-zinc-800/50 dark:bg-zinc-900/50 flex flex-col h-full justify-between gap-4 min-h-[140px]">
+           <p class="text-sm text-zinc-600 dark:text-zinc-400">Switch PHP versions instantly without dealing with environment variables.</p>
+           <Terminal command="pvm use 8.2" />
+        </div>
+      </Card>
+
+      <Card title="Composer Support">
+        <div slot="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package size-4"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
+        <div class="p-4 rounded-lg border bg-zinc-50 dark:border-zinc-800/50 dark:bg-zinc-900/50 flex flex-col h-full justify-between gap-4 min-h-[140px]">
+           <p class="text-sm text-zinc-600 dark:text-zinc-400">
+             Automatically installs Composer with each PHP version out of the box.
+           </p>
+           <Terminal command="composer --version" />
+        </div>
+      </Card>
+    </div>
+  </main>
+  <Footer />
+</Layout>

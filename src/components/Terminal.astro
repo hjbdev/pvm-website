@@ -1,0 +1,22 @@
+---
+interface Props {
+  command: string;
+}
+
+const { command } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-lg border border-zinc-700/50 bg-zinc-950 shadow-lg shadow-zinc-900/20 inline-block w-full max-w-full">
+  <div class="flex items-center rounded-t-lg border-b border-b-zinc-800/50 bg-zinc-900 px-3 py-2">
+    <div class="flex items-center gap-2">
+      <div class="h-2.5 w-2.5 rounded-full bg-zinc-700"></div>
+      <div class="h-2.5 w-2.5 rounded-full bg-zinc-700"></div>
+      <div class="h-2.5 w-2.5 rounded-full bg-zinc-700"></div>
+    </div>
+  </div>
+  <div class="flex items-center justify-between gap-4 bg-zinc-950 px-4 py-3">
+    <div class="font-mono text-sm text-zinc-100 sm:text-base overflow-x-auto w-full">
+      <span class="select-none text-zinc-500">$ </span><span class="text-zinc-200">{command}</span>
+    </div>
+  </div>
+</div>

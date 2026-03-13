@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Terminal from '../components/Terminal.astro';
 import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
+import CopyInput from '../components/CopyInput.astro';
 ---
 
 <Layout title="pvm - PHP Version Manager for Windows">
@@ -19,9 +20,18 @@ import Button from '../components/Button.astro';
         Removing the hassle of changing PHP versions in the CLI on Windows.
         When developing on Windows and using the integrated terminal, it's quite difficult to get those terminals to <i>actually</i> listen to PATH changes. This utility changes that.
       </p>
-      <div class="flex items-center justify-center gap-4">
-        <Button href="/docs">Get Started</Button>
-        <Button href="https://github.com/hjbdev/pvm/releases" variant="outline" target="_blank" rel="noopener noreferrer">Download Latest</Button>
+      <div class="max-w-md mx-auto">
+        <div class="mb-6">
+          <CopyInput value="irm https://pvm.hjb.dev/install.ps1 | iex" />
+        </div>
+        <div class="flex items-center justify-center gap-6 text-sm font-medium">
+          <a href="/docs" class="text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-700 transition-all">
+            Read Documentation
+          </a>
+          <a href="https://github.com/hjbdev/pvm/releases" class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors" target="_blank" rel="noopener noreferrer">
+            Download Latest
+          </a>
+        </div>
       </div>
     </div>
 
